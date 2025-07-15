@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coming Soon - LaunchX</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .coming-soon-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .countdown div {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      min-width: 70px;
+    }
+    .form-control, .btn {
+      border-radius: 2rem;
+    }
+    .social-icons a {
+      color: #fff;
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover {
+      color: #ffd700;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="coming-soon-wrapper">
+    <h1>🚀 Our Website is Coming Soon</h1>
+    <p class="lead">We are working hard to launch in</p>
+    <div class="countdown" id="countdown">
+      <div><span id="days">00</span><br>Days</div>
+      <div><span id="hours">00</span><br>Hours</div>
+      <div><span id="minutes">00</span><br>Mins</div>
+      <div><span id="seconds">00</span><br>Secs</div>
+    </div>
+
+    <form class="row g-2 justify-content-center w-100" style="max-width:500px;">
+      <div class="col-md-9">
+        <input type="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-warning w-100" type="submit">Notify Me</button>
+      </div>
+    </form>
+
+    <div class="social-icons mt-4">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <footer class="mt-5">
+      <p>📍 123 Street Name, City, Country | 📧 contact@example.com</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    // Set the launch date
+    const launchDate = new Date("2025-12-31T00:00:00").getTime();
+
+    const countdownInterval = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      $('#days').text(days.toString().padStart(2, '0'));
+      $('#hours').text(hours.toString().padStart(2, '0'));
+      $('#minutes').text(minutes.toString().padStart(2, '0'));
+      $('#seconds').text(seconds.toString().padStart(2, '0'));
+
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        $('#countdown').html('<h2>🎉 We have launched!</h2>');
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
