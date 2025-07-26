@@ -79,10 +79,10 @@
     </form>
 
     <div class="social-icons mt-4">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href=""><i class="fab fa-facebook-f"></i></a>
+      <a href=""><i class="fab fa-x-twitter"></i></a>
+      <a href=""><i class="fab fa-instagram"></i></a>
+      <a href=""><i class="fab fa-linkedin-in"></i></a>
     </div>
 
     <footer class="mt-5">
@@ -91,30 +91,13 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script>
-    // Set the launch date
-    const launchDate = new Date("2025-12-31T00:00:00").getTime();
-
-    const countdownInterval = setInterval(function () {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      $('#days').text(days.toString().padStart(2, '0'));
-      $('#hours').text(hours.toString().padStart(2, '0'));
-      $('#minutes').text(minutes.toString().padStart(2, '0'));
-      $('#seconds').text(seconds.toString().padStart(2, '0'));
-
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        $('#countdown').html('<h2>🎉 We have launched!</h2>');
+  <script src="assets/js/main.js"></script>
+  <noscript>
+    <style>
+      body {
+        display: none !important;
       }
-    }, 1000);
-  </script>
-
+    </style>
+  </noscript>
 </body>
 </html>

@@ -122,39 +122,23 @@
     </form>
 
     <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-dribbble"></i></a>
-      <a href="#"><i class="fab fa-behance"></i></a>
+      <a href=""><i class="fab fa-facebook-f"></i></a>
+      <a href=""><i class="fab fa-x-twitter"></i></a>
+      <a href=""><i class="fab fa-dribbble"></i></a>
+      <a href=""><i class="fab fa-behance"></i></a>
     </div>
 
-    <footer class="mt-4">📧 media@example.com</footer>
+    <footer class="mt-4">📧 contact@example.com</footer>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script>
-    const launchDate = new Date("2025-12-31T00:00:00").getTime();
-
-    const countdown = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-      $('#days').text(d.toString().padStart(2, '0'));
-      $('#hours').text(h.toString().padStart(2, '0'));
-      $('#minutes').text(m.toString().padStart(2, '0'));
-      $('#seconds').text(s.toString().padStart(2, '0'));
-
-      if (distance < 0) {
-        clearInterval(countdown);
-        $('#countdown').html('<h2>🎉 We are Live!</h2>');
+  <script src="assets/js/main.js"></script>
+  <noscript>
+    <style>
+      body {
+        display: none !important;
       }
-    }, 1000);
-  </script>
-
+    </style>
+  </noscript>
 </body>
 </html>
