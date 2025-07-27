@@ -215,45 +215,94 @@ $(document).ready(function() {
         return templates[templateId] || { name: 'Unknown Template', previewUrl: '', downloadUrl: '' };
     }
 
-    // Contact form functionality
-    function initContactForm() {
-        $('#contactForm').on('submit', function(e) {
-            e.preventDefault();
+    // // Contact form functionality
+    // function initContactForm() {
+    //     $('#contactForm').on('submit', function(e) {
+    //         e.preventDefault();
             
-            const form = $(this);
-            const formData = {
-                name: $('#name').val(),
-                email: $('#email').val(),
-                subject: $('#subject').val(),
-                message: $('#message').val()
-            };
+    //         const form = $(this);
+    //         const formData = {
+    //             name: $('#name').val(),
+    //             email: $('#email').val(),
+    //             subject: $('#subject').val(),
+    //             message: $('#message').val()
+    //         };
             
-            // Validate form
-            if (!validateContactForm(formData)) {
-                return;
-            }
+    //         // Validate form
+    //         if (!validateContactForm(formData)) {
+    //             return;
+    //         }
             
-            // Show loading state
-            const submitBtn = form.find('button[type="submit"]');
-            const originalText = submitBtn.html();
-            submitBtn.prop('disabled', true).html('<i class="bi bi-hourglass-split me-2"></i>Sending...');
+    //         // Show loading state
+    //         const submitBtn = form.find('button[type="submit"]');
+    //         const originalText = submitBtn.html();
+    //         submitBtn.prop('disabled', true).html('<i class="bi bi-hourglass-split me-2"></i>Sending...');
             
-            // Simulate form submission
-            setTimeout(() => {
-                // In a real application, this would send the form data to a server
+    //         // Simulate form submission
+    //         setTimeout(() => {
+    //             // In a real application, this would send the form data to a server
+    //             showNotification('success', 'Message sent successfully! We\'ll get back to you soon.');
+    //             form[0].reset();
+                
+    //             // Reset button
+    //             submitBtn.prop('disabled', false).html(originalText);
+                
+    //             // Track form submission
+    //             trackEvent('contact_form_submit', {
+    //                 user_email: formData.email
+    //             });
+    //         }, 2000);
+    //     });
+    // }
+
+function initContactForm() {
+    $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+
+        const form = $(this);
+        const formData = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            subject: $('#subject').val(),
+            message: $('#message').val()
+        };
+
+        // Validate form
+        if (!validateContactForm(formData)) {
+            return;
+        }
+
+        // Show loading state
+        const submitBtn = form.find('button[type="submit"]');
+        const originalText = submitBtn.html();
+        submitBtn.prop('disabled', true).html('<i class="bi bi-hourglass-split me-2"></i>Sending...');
+
+        // Send form via AJAX to Formspree
+        $.ajax({
+            url: 'https://formspree.io/f/mdkdgrnj',
+            method: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function() {
                 showNotification('success', 'Message sent successfully! We\'ll get back to you soon.');
                 form[0].reset();
-                
+            },
+            error: function() {
+                showNotification('error', 'Oops! Something went wrong. Please try again later.');
+            },
+            complete: function() {
                 // Reset button
                 submitBtn.prop('disabled', false).html(originalText);
-                
+
                 // Track form submission
                 trackEvent('contact_form_submit', {
                     user_email: formData.email
                 });
-            }, 2000);
+            }
         });
-    }
+    });
+}
+
 
     // Validate contact form
     function validateContactForm(data) {
